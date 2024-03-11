@@ -1,0 +1,32 @@
+/* Añade este estilo en tu archivo CSS (por ejemplo, public/css/dashboard.css) */
+.chart {
+    width: 600px; /* Ajusta esto según el ancho deseado */
+    height: 400px; /* Ajusta esto según la altura deseada */
+    margin: 2rem auto; /* Centrar y dar un margen superior e inferior */
+}
+
+#chart-container{
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard-title {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.dashboard-description {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    color: #666;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 1rem; /* Ajusta este valor como prefieras */
+}
+
+.dashboard-title {
+    margin-bottom: 0.5rem; /* Espacio entre el título y la descripción */
+}

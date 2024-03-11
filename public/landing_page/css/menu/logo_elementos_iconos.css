@@ -1,0 +1,71 @@
+/* Estilos para el logo */
+.logo {
+    width: 180px;
+  }
+  
+  li{
+    font-family:'Noto Serif';
+  }
+
+  /* Menu */
+  #menu{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  /* Estilo por defecto para pantallas grandes */
+  .img-novedades img, .img-calzado img, .img-ropa img, .img-accesorios img {
+    display: block; /* Asegura que las imágenes se muestren en pantallas grandes */
+  }
+
+  /* Oculta las imágenes en pantallas pequeñas */
+  @media (max-width: 992px) { /* Bootstrap breakpoint para dispositivos medianos */
+    .img-novedades img, .img-calzado img, .img-ropa img, .img-accesorios img {
+      display: none; /* Oculta las imágenes en pantallas pequeñas */
+    }
+  }
+
+
+  /* Estilos para los elementos del menú */
+  .navbar-nav li {
+    margin-right: 10px; 
+    font-size: 18px; 
+  }
+  
+  .navbar-nav li a {
+    color: black;
+    font-weight:450;
+  }
+  
+  /* Estilos para los iconos del menú */
+  .icons .nav-item {
+    margin-left: -10px;
+  }
+  
+  /* Estilos para el selector de idioma */
+  .idioma .btn.btn-secondary.dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: #000;
+  }
+  
+  .idioma {
+    position: relative;
+    margin-top: 5px;
+  }
+  
+  /* Estilos para el menú desplegable de idiomas */
+  .idioma .idiomas {
+    min-width: auto; 
+    max-width: 150px; 
+    background-color: #fff; 
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+  }
+  
+  .idiomas a:hover {
+    background-color: #f0f0f0;
+  }

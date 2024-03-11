@@ -1,0 +1,38 @@
+  /* Ocultar flecha en el enlace de Novedades */
+  #novedadesDropdown .dropdown-toggle::after {
+    display: none;
+  }
+  
+  /* Subrayar enlace de Novedades al pasar el ratón */
+  #novedadesDropdown .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilos para destacados y marcas */
+  .index-row-des, .index-row-mar {
+    background-color: #f0f0f0;
+    width: 100%;
+    padding: 10px;
+    color: black;
+    font-size: 14px;
+  }
+  
+  /* Estilo para las imagenes de novedades */
+  .img-novedades .image-container-nov {
+    width: 300px;
+    height: 220px;
+    max-width: 100%;
+    margin-bottom: 10px;
+    margin: 5px;
+  }
+  
+  .image-container-nov{
+    overflow: hidden;
+  }
+  
+  .image-container-nov img{
+    width: 100%; 
+    height: auto;
+    object-fit:contain;
+    margin-top: -15%;
+  }

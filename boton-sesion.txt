@@ -1,0 +1,8 @@
+<div class="hero">
+    {# Botón condicional de inicio/cierre de sesión #}
+    {% if isAuthenticated %}
+        <a href="{{ path('app_logout') }}" class="btn">Cerrar Sesión</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" class="btn">Iniciar Sesión</a>
+    {% endif %}
+</div>

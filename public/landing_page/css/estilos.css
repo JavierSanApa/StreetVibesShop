@@ -1,0 +1,19 @@
+/* MENU */
+@import "menu/logo_elementos_iconos.css";
+@import "menu/novedades.css";
+@import "menu/calzado.css";
+@import "menu/ropa.css";
+@import "menu/accesorios.css";
+
+/* CAROUSEL */
+@import "carousel.css";
+
+/* FOOTER */
+@import "footer.css";
+
+
+/* ARTICULOS */
+@import "articulos.css";
+
+/* CARRITO */
+@import "carrito.css";

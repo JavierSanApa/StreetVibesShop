@@ -1,0 +1,298 @@
+{# base.twig #}
+<!DOCTYPE html>
+<html lang="es">
+{% block head %}
+    <!-- METADATOS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- TÍTULO -->
+    <title>{% block title %}StreetVibesShop{% endblock %}</title>
+
+    <!-- ENLACES A ARCHIVOS CSS -->
+    <link rel="stylesheet" href="{{ asset('landing_page/css/estilos.css') }}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Protest+Strike&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="contenido_principal">   
+        <!-- MENU -->
+        <div id="menu">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{{ path('app_landing_page') }}">
+                    <img class="logo img-fluid" src="landing_page/img/Logo.png" alt="Logo" />
+                </a>
+
+                <!-- Botón Hamburguesa -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- CONTENIDO DEL MENÚ -->
+                <div class="collapse navbar-collapse justify-content-between ps-3" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+
+                        <!-- Elementos del menú principal -->
+                        <li class="nav-item dropdown" id="novedadesDropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNovedades" role="button" aria-expanded="false">
+                                NOVEDADES
+                            </a>
+                            <!-- Dropdown de Novedades -->
+                            <ul class="dropdown-menu novedades" aria-labelledby="navbarDropdownNovedades">
+                                <div class="d-flex">    
+                                    <!-- Columna de novedades -->
+                                    <div class="novedades-column">
+                                        <li class="index-row-des">DESTACADOS</li>
+                                        <li><a class="dropdown-item" href="#">Ver todas las novedades</a></li>
+                                        <li><a class="dropdown-item" href="#">Novedades drops</a></li>
+                                        <li><a class="dropdown-item" href="#">Novedades ropa</a></li>
+                                        <li><a class="dropdown-item" href="#">Novedades calzado</a></li>
+                                        <li><a class="dropdown-item" href="#">Novedades Accesorios</a></li>
+                                    </div>
+
+                                    <!-- Columna de marcas -->
+                                    <div class="marcas-column">
+                                        <li class="index-row-mar">MARCAS</li>
+                                        <li><a class="dropdown-item" href="#">Nike</a></li>
+                                        <li><a class="dropdown-item" href="#">FakeGods</a></li>
+                                        <li><a class="dropdown-item" href="#">Adidas</a></li>
+                                        <li><a class="dropdown-item" href="#">TwoJeys</a></li>
+                                        <li><a class="dropdown-item" href="#">Puma</a></li>
+                                    </div>
+
+                                    <!-- Columna de imagenes -->
+                                    <div class="img-novedades d-flex">
+                                        <div class="image-container-nov"><img src="landing_page/img/Menu/Novedades/1.jpg" alt="Foto vaqueros novedades"></div>
+                                        <div class="image-container-nov"><img src="landing_page/img/Menu/Novedades/2.jpg" alt="Foto camiseta novedades"></div>
+                                        <div class="image-container-nov"><img src="landing_page/img/Menu/Novedades/3.jpg" alt="Foto sudadera novedades"></div>          
+                                    </div>
+                                </div>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">DROPS</a>
+                        </li>
+                        <!-- Dropdown de Calzado -->
+                        <li class="nav-item cal" id="calzadoDropdown">
+                            <a class="nav-link cal" href="#" id="navbarDropdownCalzado" role="button" aria-expanded="false">
+                                CALZADO
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCalzado">
+                                <div class="d-flex">    
+                                    <!-- Columna de tipos de calzado -->
+                                    <div class="calzado-column">
+                                        <li class="index-row-des">DESTACADOS</li>
+                                        <li><a class="dropdown-item" href="#">Ver toda el calzado</a></li>
+                                        <li><a class="dropdown-item" href="#">Zapatillas</a></li>
+                                        <li><a class="dropdown-item" href="#">Botas</a></li>
+                                        <li><a class="dropdown-item" href="#">Sandalias</a></li>
+                                        <li><a class="dropdown-item" href="#">Tacones</a></li>
+                                    </div>
+
+                                    <!-- Columna de marcas de calzado -->
+                                    <div class="marcas-calzado-column">
+                                        <li class="index-row-mar">MARCAS</li>
+                                        <li><a class="dropdown-item" href="#">Nike</a></li>
+                                        <li><a class="dropdown-item" href="#">Adidas</a></li>
+                                        <li><a class="dropdown-item" href="#">Puma</a></li>
+                                        <li><a class="dropdown-item" href="#">Reebok</a></li>
+                                    </div>
+
+                                    <!-- Columna de imágenes de calzado -->
+                                    <div class="img-calzado d-flex">
+                                        <div class="image-container-cal"><img src="landing_page/img/Menu/Calzado/1.jpg" alt="Foto zapatillas calzado"></div>
+                                        <div class="image-container-cal"><img src="landing_page/img/Menu/Calzado/2.jpg" alt="Foto botas calzado"></div>
+                                        <div class="image-container-cal"><img src="landing_page/img/Menu/Calzado/3.jpg" alt="Foto sandalias calzado"></div>          
+                                    </div>
+                                </div>
+                            </ul>
+                        </li>
+
+                        <!-- Dropdown de Ropa -->
+                        <li class="nav-item ropa" id="ropaDropdown">
+                            <a class="nav-link ropa" href="{{ path('ropa_page') }}" id="navbarDropdownRopa" role="button" aria-expanded="false">
+                                ROPA
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownRopa">
+                                <div class="d-flex">    
+                                    <!-- Columna de tipos de ropa -->
+                                    <div class="ropa-column">
+                                        <li class="index-row-des">DESTACADOS</li>
+                                        <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Ver toda la ropa</a></li>
+                                        <li><a class="dropdown-item" href="#">Chaquetas</a></li>
+                                        <li><a class="dropdown-item" href="#">Camisetas</a></li>
+                                        <li><a class="dropdown-item" href="#">Pantalones</a></li>
+                                        <li><a class="dropdown-item" href="#">Sudaderas</a></li>
+                                    </div>
+
+                                    <!-- Columna de marcas de ropa -->
+                                    <div class="marcas-ropa-column">
+                                        <li class="index-row-mar">MARCAS</li>
+                                        <li><a class="dropdown-item" href="#">Carhartt</a></li>
+                                        <li><a class="dropdown-item" href="#">Kenzo</a></li>
+                                        <li><a class="dropdown-item" href="#">Lacoste</a></li>
+                                        <li><a class="dropdown-item" href="#">Pleasures</a></li>
+                                    </div>
+
+                                    <!-- Columna de imágenes de ropa -->
+                                    <div class="img-ropa d-flex">
+                                        <div class="image-container-ropa"><img src="landing_page/img/Menu/Ropa/1.jpg" alt="Foto varsity ropa"></div>
+                                        <div class="image-container-ropa"><img src="landing_page/img/Menu/Ropa/2.jpg" alt="Foto vaqueros cortos ropa"></div>
+                                        <div class="image-container-ropa"><img src="landing_page/img/Menu/Ropa/3.jpg" alt="Foto camiseta ropa"></div>          
+                                    </div>
+                                </div>
+                            </ul>
+                        </li>
+
+                        <!-- Dropdown de Accesorios -->
+                        <li class="nav-item accesorios" id="accesoriosDropdown">
+                            <a class="nav-link accesorios" href="#" id="navbarDropdownAccesorios" role="button" aria-expanded="false">
+                                ACCESORIOS
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAccesorios">
+                                <div class="d-flex">    
+                                    <!-- Columna de tipos de accesorios -->
+                                    <div class="accesorios-column">
+                                        <li class="index-row-des">DESTACADOS</li>
+                                        <li><a class="dropdown-item" href="#">Ver todos los accesorios</a></li>
+                                        <li><a class="dropdown-item" href="#">Decoración</a></li>
+                                        <li><a class="dropdown-item" href="#">Joyería</a></li>
+                                        <li><a class="dropdown-item" href="#">Gorros y gorras</a></li>
+                                        <li><a class="dropdown-item" href="#">Mochilas</a></li>
+                                    </div>
+
+                                    <!-- Columna de imágenes de accesorios -->
+                                    <div class="img-accesorios d-flex">
+                                        <div class="image-container-accesorios"><img src="landing_page/img/Menu/Accesorios/1.jpg" alt="Foto zapatillas calzado"></div>
+                                        <div class="image-container-accesorios"><img src="landing_page/img/Menu/Accesorios/2.jpg" alt="Foto botas calzado"></div>
+                                        <div class="image-container-accesorios"><img src="landing_page/img/Menu/Accesorios/3.jpg" alt="Foto sandalias calzado"></div>          
+                                    </div>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- Iconos y selector de idioma -->
+                    <ul class="navbar-nav icons">
+                        <li class="nav-item my-auto">
+                            <a href="{{ path('app_logout') }}">Cerrar Sesión</a>
+                        </li>
+
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/carrito">
+                                <i class="bi bi-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi bi-search"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="idioma">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ES
+                                </button>
+                                <!-- Menú desplegable de idiomas -->
+                                <div class="dropdown-menu idiomas" aria-labelledby="navbarDropdownIdiomas">
+                                    <a class="dropdown-item" href="#" onclick="changeLanguage('EN')">EN</a>
+                                    <a class="dropdown-item" href="#" onclick="changeLanguage('FR')">FR</a>
+                                    <a class="dropdown-item" href="#" onclick="changeLanguage('DE')">DE</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div> <!-- menu -->
+
+        <!-- carousel -->
+        <div id="carouselSlides" class="carousel_slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="overlay-text">
+                    <p>Descubre en StreetVibesShop el epicentro de la moda urbana, donde convergen las marcas más icónicas y las joyas emergentes del streetwear. Desde lanzamientos exclusivos hasta lo último en calzado, ropa y accesorios, sumérgete en nuestra selección cuidadosamente curada y mantente al día con los drops más codiciados. Todo lo que defines como estilo está aquí.</p>
+                </div>
+                
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="landing_page/img/Carousel/Primera.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="landing_page/img/Carousel/Segunda.jpg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="landing_page/img/Carousel/Tercera.jpg" alt="Third slide">
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer bg-dark text-white pt-4 pb-2">
+            <div class="container">
+                <div class="row">
+                    <!-- Guía de compras -->
+                    <div class="col-md-3">
+                        <h5>Guía de Compras</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white">Envíos y plazos de entrega</a></li>
+                            <li><a href="#" class="text-white">Métodos de pago</a></li>
+                            <li><a href="#" class="text-white">Devoluciones</a></li>
+                            <li><a href="#" class="text-white">¿Cuál es mi talla?</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Información de contacto -->
+                    <div class="col-md-2">
+                        <h5>Contacto</h5>
+                        <p><i class="bi bi-telephone-fill"></i> +34 123 456 789</p>
+                        <p><i class="bi bi-envelope-fill"></i> info@streetvibesshop.com</p>
+                    </div>
+                    <!-- Enlaces rápidos -->
+                    <div class="col-md-2">
+                        <h5>Enlaces Rápidos</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html" class="text-white">Inicio</a></li>
+                            <li><a href="#" class="text-white">Novedades</a></li>
+                            <li><a href="#" class="text-white">Drops</a></li>
+                            <li><a href="#" class="text-white">Ropa</a></li>
+                            <li><a href="#" class="text-white">Accesorios</a></li>
+                        </ul>
+                    </div>
+                    <!-- Redes sociales -->
+                    <div class="col-md-2">
+                        <h5>Síguenos</h5>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i> Instagram</a><br>
+                        <a href="#" class="text-white"><i class="bi bi-facebook"></i> Facebook</a><br>
+                        <a href="#" class="text-white"><i class="bi bi-twitter"></i> Twitter</a>
+                    </div>
+                    
+                    <!-- Centro de ayuda -->
+                    <div class="col-md-3">
+                        <h5>Centro de Ayuda</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white">FAQ</a></li>
+                            <li><a href="#" class="text-white">Política de cookies</a></li>
+                            <li><a href="#" class="text-white">Condiciones generales de contratación</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    {% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="{{ asset('landing_page/script.js') }}" defer></script>
+    {% endblock %}
+{% endblock %}
+</html>

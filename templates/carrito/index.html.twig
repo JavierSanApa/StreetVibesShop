@@ -1,0 +1,58 @@
+{# carrito/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Tu Carrito{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('landing_page/css/estilos.css') }}"/>
+{% endblock %}
+
+{% block body %}
+<h1>Tu Carrito de Compras</h1>
+
+{% if carrito is empty %}
+    <p>Tu carrito está vacío.</p>
+{% else %}
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Talla</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set total = 0 %}
+            {% for claveProductoCarrito, item in carrito %}
+                <tr>
+                    <td>{{ item.nombre }}</td>
+                    <td>{{ item.cantidad }}</td>
+                    <td>{{ item.tallaNombre }}</td>
+                    <td>{{ item.precio | number_format(2, '.', ',') }} €</td>
+                    <td>{{ (item.precio * item.cantidad) | number_format(2, '.', ',') }} €</td>
+                    <td>
+                        <!-- Formulario para eliminar el producto del carrito -->
+                        <form action="{{ path('app_eliminar_del_carrito', {'claveProductoCarrito': claveProductoCarrito}) }}" method="post">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% set total = total + (item.precio * item.cantidad) %}
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4">Total:</th>
+                <th>{{ total | number_format(2, '.', ',') }} €</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endif %}
+
+<a href="{{ path('app_homepage') }}">Continuar Comprando</a> | 
+<a href="{{ path('app_realizar_compra') }}">Finalizar Compra</a>
+
+{% endblock %}

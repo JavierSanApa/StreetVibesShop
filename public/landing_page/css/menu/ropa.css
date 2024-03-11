@@ -1,0 +1,29 @@
+/* Ocultar flecha en el enlace de Ropa */
+#ropaDropdown .dropdown-toggle::after {
+  display: none;
+}
+
+/* Subrayar enlace de Ropa al pasar el ratón  */
+#ropaDropdown .nav-link:hover {
+  text-decoration: underline;
+}
+
+/*Estilo para las imagenes de ropa*/
+.img-ropa .image-container-ropa {
+  width: 300px;
+  height: 220px;
+  max-width: 100%;
+  margin-bottom: 10px;
+  margin: 5px;
+}
+
+.image-container-ropa {
+  overflow: hidden;
+}
+
+.image-container-ropa img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: -15%;
+}

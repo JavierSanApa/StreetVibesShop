@@ -1,0 +1,32 @@
+/* Estilos para el menú y el footer que ya has establecido */
+
+/* Estilos para el contenido principal */
+.container {
+    max-width: 1200px; /* O el ancho que prefieras */
+}
+
+/* Estilos para los títulos de las secciones */
+h2 {
+    color: #333; /* Un color oscuro para el texto */
+    margin-bottom: 0.5rem;
+}
+
+/* Estilos para las tarjetas de los artículos */
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Una ligera sombra para destacar las tarjetas */
+    transition: transform 0.3s ease; /* Efecto de transición suave para el hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Eleva la tarjeta ligeramente al pasar el mouse */
+}
+
+/* Estilos para la paginación */
+.pagination {
+    margin-top: 1rem;
+}
+
+/* Utiliza media queries para ajustar los estilos en pantallas más pequeñas si es necesario */
+@media (max-width: 768px) {
+    /* Tus estilos para dispositivos móviles aquí */
+}

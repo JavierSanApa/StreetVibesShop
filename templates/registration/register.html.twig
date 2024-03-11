@@ -1,0 +1,24 @@
+{# templates/registration/register.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container login-box">
+        <h1>Register</h1>
+        
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+            <div class="login-box form-group">
+                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="login-box form-group">
+                {{ form_row(registrationForm.plainPassword, {'attr': {'class': 'form-control'}, 'label': 'Password'}) }}
+            </div>
+            <div class="login-box form-group">
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+.footer {
+    background-color: #212529; /* Oscuro */
+    color: #ffffff; /* Blanco */
+}
+
+.footer h5 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.footer p, .footer a {
+    color: #ffffff; /* Mantén los enlaces blancos para que contrasten con el fondo oscuro */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+}
+
+.footer a:hover {
+    color: #dddddd; /* Un gris claro para el hover */
+}
+
+/* Ajustes para la responsividad y el padding */
+@media (max-width: 768px) {
+    .footer {
+        text-align: center;
+    }
+}
