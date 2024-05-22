@@ -182,7 +182,7 @@
                             <a href="{{ path('app_logout') }}">Cerrar Sesión</a>
                         </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ path('app_carrito') }}">
                             <i class="bi bi-cart"></i>
                         </a>
                     </li>
@@ -227,43 +227,49 @@
             </div>
         </div>
         
-<!-- Artículos -->
-<div class="row">
-    {% for producto in productos %}
-    <div class="col-sm-6 col-md-3 mb-4">
-        <div class="card h-100">
-            <!-- Imagen del artículo -->
-            <img src="{{ asset('landing_page/img/Articulos/Ropa/' ~ producto.id ~ '.JPG') }}" class="card-img-top" alt="{{ producto.nombre }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ producto.nombre }}</h5>
-                <p class="card-text">Cantidad disponible: {{ producto.cantidad }}</p>
-                <!-- Añadir precio del producto -->
-                <p class="card-text">Precio: {{ producto.precio | number_format(2, '.', ',') }} €</p>
-                <!-- Formulario para añadir producto al carrito con selección de talla -->
-                <form action="{{ path('app_añadir_a_carrito', {'idProducto': producto.id}) }}" method="post">
-                    <div class="mb-3">
-                        <label for="talla-{{ producto.id }}" class="form-label">Talla:</label>
-                        <select name="talla" id="talla-{{ producto.id }}" class="form-select">
-                            {% for talla in tallas %}
-                            <option value="{{ talla.id }}">{{ talla.nombre }}</option>
-                            {% endfor %}
-                        </select>
+        <!-- Artículos -->
+        <div class="row">
+            {% for producto in productos %}
+            <div class="col-sm-6 col-md-3 mb-4">
+                <div class="card h-100">
+                    <!-- Imagen del artículo -->
+                    <img src="{{ asset('landing_page/img/Articulos/Ropa/' ~ producto.id ~ '.JPG') }}" class="card-img-top" alt="{{ producto.nombre }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.nombre }}</h5>
+                        <p class="card-text">Cantidad disponible: {{ producto.cantidad }}</p>
+                        <!-- Añadir precio del producto -->
+                        <p class="card-text">Precio: {{ producto.precio | number_format(2, '.', ',') }} €</p>
+                        <!-- Formulario para añadir producto al carrito con selección de talla -->
+                        <form action="{{ path('app_añadir_a_carrito', {'idProducto': producto.id}) }}" class="add-to-cart-form" method="post">
+                            <div class="mb-3">
+                                <label for="talla-{{ producto.id }}" class="form-label">Talla:</label>
+                                <select name="talla" id="talla-{{ producto.id }}" class="form-select">
+                                    {% for talla in tallas %}
+                                    <option value="{{ talla.id }}">{{ talla.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cantidad-{{ producto.id }}" class="form-label">Cantidad:</label>
+                                <input type="number" id="cantidad-{{ producto.id }}" name="cantidad" value="1" min="1" max="{{ producto.cantidad }}" class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label for="cantidad-{{ producto.id }}" class="form-label">Cantidad:</label>
-                        <input type="number" id="cantidad-{{ producto.id }}" name="cantidad" value="1" min="1" max="{{ producto.cantidad }}" class="form-control"/>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Añadir al carrito</button>
-                </form>
+                </div>
+            </div>
+            {% else %}
+            <p>No hay productos disponibles.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Popup de confirmación -->
+        <div id="add-to-cart-popup" class="popup">
+            <div class="popup-content">
+                <span class="close-popup">&times;</span>
+                <p>Producto añadido correctamente al carrito.</p>
             </div>
         </div>
-    </div>
-    {% else %}
-    <p>No hay productos disponibles.</p>
-    {% endfor %}
-</div>
-
-
 
         <!-- Paginación -->
         <nav aria-label="Page navigation example">
@@ -341,6 +347,48 @@
     {% block scripts %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="{{ asset('landing_page/script.js') }}" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    var forms = document.querySelectorAll('.add-to-cart-form');
+    var popup = document.getElementById('add-to-cart-popup');
+    var closePopup = document.querySelector('.close-popup');
+
+    forms.forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            }).then(function(response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            }).then(function(data) {
+                popup.style.display = 'block'; // Aquí se muestra el popup
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 3000); // Extendido a 3 segundos
+            }).catch(function(error) {
+                console.error('Error:', error);
+            });
+        });
+    });
+
+    closePopup.addEventListener('click', function() {
+        popup.style.animation = 'fadeOut 1s forwards'; // Animación de salida
+        setTimeout(function() {
+            popup.style.display = 'none'; // Ocultar el popup después de la animación de salida
+        }, 1000); // Extendido a 1 segundo
+    });
+});
+
+    </script>
     {% endblock %}
 {% endblock %}
 </html>
