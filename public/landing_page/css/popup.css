@@ -3,31 +3,39 @@
     display: none; /* Ocultar por defecto */
     position: fixed;
     z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8); /* Fondo semitransparente más oscuro */
+    right: 20px; /* Posicionar a la derecha */
+    top: 20px; /* Espacio desde la parte superior */
+    width: auto; /* Ancho automático */
+    height: auto; /* Altura automática */
     justify-content: center;
     align-items: center;
     text-align: center;
-    animation: fadeIn 1s forwards; /* Animación de entrada */
+}
+
+.popup.show {
+    display: flex; /* Mostrar popup con flexbox */
+    animation: fadeIn 0.5s forwards, fadeOut 0.5s 2.5s forwards; /* Animación de entrada y salida */
 }
 
 .popup-content {
-    background-color: #7FFF00; /* Cambiar a verde */
-    border-radius: 8px; /* Hacerlo un poco más pequeño */
-    padding: 10px; /* Reducir el padding */
+    background-color: #228B22; /* Fondo verde */
+    border-radius: 12px; /* Bordes redondeados */
+    padding: 20px; /* Padding más amplio */
     text-align: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    width: 300px; /* Ancho fijo más pequeño */
+    max-width: 80%; /* Ancho máximo para pantallas pequeñas */
+    position: relative; /* Para el botón de cierre */
+    transform: scale(0.8); /* Empezar con una escala pequeña */
+    animation: scaleUp 0.5s forwards, scaleDown 0.5s 2.5s forwards; /* Animación de escala */
 }
 
 .close-popup {
     position: absolute;
-    top: 5px; /* Ajustar la posición superior */
-    right: 10px; /* Ajustar la posición derecha */
-    font-size: 20px; /* Reducir el tamaño de la fuente */
-    color: #333; /* Cambiar el color del icono de cierre */
+    top: 10px; /* Ajustar la posición superior */
+    right: 15px; /* Ajustar la posición derecha */
+    font-size: 24px; /* Tamaño de la fuente */
+    color: #000; /* Color del icono de cierre */
     cursor: pointer;
 }
 
@@ -46,5 +54,23 @@
     }
     to {
         opacity: 0;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleDown {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0.8);
     }
 }
