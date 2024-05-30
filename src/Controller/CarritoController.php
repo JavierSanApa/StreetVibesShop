@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CarritoController extends AbstractController
@@ -39,7 +40,8 @@ class CarritoController extends AbstractController
 
         $claveProductoCarrito = $idProducto . '-' . $tallaId;
 
-        $carrito = $request->getSession()->get('carrito', []);
+        $session = $request->getSession();
+        $carrito = $session->get('carrito', []);
 
         if (isset($carrito[$claveProductoCarrito])) {
             $carrito[$claveProductoCarrito]['cantidad'] += $cantidad;
@@ -56,15 +58,17 @@ class CarritoController extends AbstractController
             ];
         }
 
-        $request->getSession()->set('carrito', $carrito);
+        $session->set('carrito', $carrito);
 
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse(['message' => 'Producto añadido correctamente al carrito']);
         }
-    
+
         // Solo redirecciona si no es una llamada AJAX
         return $this->redirectToRoute('ropa_page');
     }
+
+
 
     #[Route('/eliminarDelCarrito/{claveProductoCarrito}', name: 'app_eliminar_del_carrito', methods: ['POST'])]
     public function eliminarDelCarrito(Request $request, $claveProductoCarrito): Response

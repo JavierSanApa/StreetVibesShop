@@ -177,10 +177,13 @@
                 </ul>
                 <!-- Iconos y selector de idioma -->
                 <ul class="navbar-nav icons">
-                    <ul class="navbar-nav icons">
-                        <li class="nav-item my-auto">
+                    <li class="nav-item my-auto">
+                        {% if isLoggedIn %}
                             <a href="{{ path('app_logout') }}">Cerrar Sesión</a>
-                        </li>
+                        {% else %}
+                            <a href="{{ path('app_login') }}">Iniciar Sesión</a>
+                        {% endif %}
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_carrito') }}">
                             <i class="bi bi-cart"></i>
@@ -230,38 +233,43 @@
         <!-- Artículos -->
         <div class="row">
             {% for producto in productos %}
-            <div class="col-sm-6 col-md-3 mb-4">
-                <div class="card h-100">
-                    <!-- Imagen del artículo -->
-                    <img src="{{ asset('landing_page/img/Articulos/Ropa/' ~ producto.id ~ '.JPG') }}" class="card-img-top" alt="{{ producto.nombre }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ producto.nombre }}</h5>
-                        <p class="card-text">Cantidad disponible: {{ producto.cantidad }}</p>
-                        <!-- Añadir precio del producto -->
-                        <p class="card-text">Precio: {{ producto.precio | number_format(2, '.', ',') }} €</p>
-                        <!-- Formulario para añadir producto al carrito con selección de talla -->
-                        <form action="{{ path('app_añadir_a_carrito', {'idProducto': producto.id}) }}" class="add-to-cart-form" method="post">
-                            <div class="mb-3">
-                                <label for="talla-{{ producto.id }}" class="form-label">Talla:</label>
-                                <select name="talla" id="talla-{{ producto.id }}" class="form-select">
-                                    {% for talla in tallas %}
-                                    <option value="{{ talla.id }}">{{ talla.nombre }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="cantidad-{{ producto.id }}" class="form-label">Cantidad:</label>
-                                <input type="number" id="cantidad-{{ producto.id }}" name="cantidad" value="1" min="1" max="{{ producto.cantidad }}" class="form-control"/>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Añadir al carrito</button>
-                        </form>
+                <div class="col-sm-6 col-md-3 mb-4">
+                    <div class="card h-100">
+                        <!-- Imagen del artículo -->
+                        <img src="{{ asset('landing_page/img/Articulos/Ropa/' ~ producto.id ~ '.JPG') }}" class="card-img-top" alt="{{ producto.nombre }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ producto.nombre }}</h5>
+                            <p class="card-text">Cantidad disponible: {{ producto.cantidad }}</p>
+                            <!-- Añadir precio del producto -->
+                            <p class="card-text">Precio: {{ producto.precio | number_format(2, '.', ',') }} €</p>
+                            <!-- Formulario para añadir producto al carrito con selección de talla -->
+                            {% if isAuthenticated %}
+                                <form action="{{ path('app_añadir_a_carrito', {'idProducto': producto.id}) }}" class="add-to-cart-form" method="post">
+                                    <div class="mb-3">
+                                        <label for="talla-{{ producto.id }}" class="form-label">Talla:</label>
+                                        <select name="talla" id="talla-{{ producto.id }}" class="form-select">
+                                            {% for talla in tallas %}
+                                            <option value="{{ talla.id }}">{{ talla.nombre }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cantidad-{{ producto.id }}" class="form-label">Cantidad:</label>
+                                        <input type="number" id="cantidad-{{ producto.id }}" name="cantidad" value="1" min="1" max="{{ producto.cantidad }}" class="form-control"/>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+                                </form>
+                            {% else %}
+                                <a href="{{ path('app_login') }}" class="btn btn-primary">Iniciar sesión para añadir al carrito</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-            </div>
             {% else %}
-            <p>No hay productos disponibles.</p>
+                <p>No hay productos disponibles.</p>
             {% endfor %}
         </div>
+
 
         <!-- Popup de confirmación -->
         <div id="add-to-cart-popup" class="popup">
