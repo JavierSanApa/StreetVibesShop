@@ -9,7 +9,7 @@ use App\Repository\TallaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CompraController extends AbstractController
@@ -20,7 +20,7 @@ class CompraController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-    
+
     #[Route('/compra', name: 'app_compra')]
     public function index(): Response
     {
@@ -40,19 +40,19 @@ class CompraController extends AbstractController
         $pedido->setFecha(new \DateTime());
         $pedido->setEstado('Pendiente');
 
+        $lineasPedido = [];
+
         foreach ($carrito as $claveProductoCarrito => $item) {
             $producto = $this->entityManager->getRepository(Producto::class)->find($item['idProducto']);
-            
+
             if (!$producto) {
                 throw new \Exception("El producto no existe.");
             }
 
-            // Verificar que hay suficiente cantidad disponible
             if ($producto->getCantidad() < $item['cantidad']) {
                 throw new \Exception("No hay suficiente cantidad disponible para el producto {$producto->getNombre()}.");
             }
 
-            // Restar la cantidad vendida de la cantidad disponible
             $nuevaCantidad = $producto->getCantidad() - $item['cantidad'];
             $producto->setCantidad($nuevaCantidad);
 
@@ -60,22 +60,26 @@ class CompraController extends AbstractController
             $lineaPedido->setPedido($pedido);
             $lineaPedido->setProducto($producto);
             $lineaPedido->setCantidad($item['cantidad']);
-            // Asumiendo que LineaPedido tiene un método setPrecio
             $lineaPedido->setPrecio($producto->getPrecio());
 
             $this->entityManager->persist($lineaPedido);
-            // Actualiza el producto con la nueva cantidad
             $this->entityManager->persist($producto);
+
+            $lineasPedido[] = [
+                'nombre' => $producto->getNombre(),
+                'cantidad' => $item['cantidad'],
+                'talla' => $item['tallaNombre'],
+                'precio' => $producto->getPrecio(),
+            ];
         }
 
         $this->entityManager->persist($pedido);
         $this->entityManager->flush();
 
-        // Limpiar el carrito después de la compra
         $request->getSession()->set('carrito', []);
 
-        // Redirigir a una ruta nombrada para manejar la redirección
-        return $this->redirectToRoute('app_landing_page');
+        return $this->render('compra/confirmacion.html.twig', [
+            'lineas' => $lineasPedido,
+        ]);
     }
-
 }

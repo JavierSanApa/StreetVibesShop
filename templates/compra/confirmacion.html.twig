@@ -1,0 +1,48 @@
+{# templates/compra/confirmacion.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Compra Realizada{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('landing_page/css/estilos.css') }}"/>
+{% endblock %}
+
+{% block body %}
+<h1>Compra Realizada</h1>
+
+<p>Gracias por tu compra. Aquí tienes los detalles de tu pedido:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Talla</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set total = 0 %}
+        {% for item in lineas %}
+            <tr>
+                <td>{{ item.nombre }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>{{ item.talla }}</td>
+                <td>{{ item.precio | number_format(2, '.', ',') }} €</td>
+                <td>{{ (item.precio * item.cantidad) | number_format(2, '.', ',') }} €</td>
+            </tr>
+            {% set total = total + (item.precio * item.cantidad) %}
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="4">Total:</th>
+            <th>{{ total | number_format(2, '.', ',') }} €</th>
+        </tr>
+    </tfoot>
+</table>
+
+<a href="{{ path('app_homepage') }}">Volver a la página principal</a>
+
+{% endblock %}
