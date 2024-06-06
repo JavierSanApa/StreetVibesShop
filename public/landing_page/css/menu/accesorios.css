@@ -1,29 +1,65 @@
 /* Ocultar flecha en el enlace de Accesorios */
 #accesoriosDropdown .dropdown-toggle::after {
-    display: none;
+  display: none;
+}
+
+/* Subrayar enlace de Accesorios al pasar el ratón */
+#accesoriosDropdown .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilo para las imagenes de Accesorios */
+.img-accesorios .image-container-accesorios {
+  width: 300px;
+  height: 220px;
+  max-width: 100%;
+  margin-bottom: 10px;
+  margin: 5px;
+}
+
+.image-container-accesorios {
+  overflow: hidden;
+}
+
+.image-container-accesorios img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: -15%;
+}
+
+/* Estilos para el menú cuando el ancho de la pantalla es menor o igual a 991px */
+@media only screen and (max-width: 991px) {
+  /* Ocultar las imágenes en el menú */
+  .dropdown-menu.accesorios {
+      display: none !important;
   }
-  
-  /* Subrayar enlace de Accesorios al pasar el ratón  */
-  #accesoriosDropdown .nav-link:hover {
-    text-decoration: underline;
-  }
-  
-  /*Estilo para las imagenes de Accesorios*/
+
   .img-accesorios .image-container-accesorios {
-    width: 300px;
-    height: 220px;
-    max-width: 100%;
-    margin-bottom: 10px;
-    margin: 5px;
+      display: none !important;
   }
-  
-  .image-container-accesorios {
-    overflow: hidden;
-  }
-  
-  .image-container-accesorios img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    margin-top: -15%;
-  }
+}
+
+/* Asegurar que el menú se oculta al dejar de pasar el ratón */
+.dropdown-menu.accesorios {
+  display: none;
+  transition: display 0.2s ease-in-out;
+}
+
+/* Mostrar el menú al pasar el ratón por encima */
+#accesoriosDropdown:hover .dropdown-menu.accesorios,
+#accesoriosDropdown:focus .dropdown-menu.accesorios {
+  display: inline-flex !important;
+}
+
+/* Estilo para contenedor de imágenes */
+.image-container-accesorios {
+  overflow: hidden;
+}
+
+.image-container-accesorios img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: -15%;
+}

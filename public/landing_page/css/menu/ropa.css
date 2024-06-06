@@ -27,3 +27,39 @@
   object-fit: contain;
   margin-top: -15%;
 }
+
+/* Estilos para el menú cuando el ancho de la pantalla es menor o igual a 991px */
+@media only screen and (max-width: 991px) {
+  /* Ocultar las imágenes en el menú */
+  .ropa {
+      display: none !important;
+  }
+
+  .img-ropa .image-container-ropa {
+      display: none !important;
+  }
+}
+
+/* Asegurar que el menú se oculta al dejar de pasar el ratón */
+.ropa {
+  display: none;
+  transition: display 0.2s ease-in-out;
+}
+
+/* Mostrar el menú al pasar el ratón por encima */
+#ropaDropdown:hover .ropa,
+#ropaDropdown:focus .ropa {
+  display: inline-flex !important;
+}
+
+/* Estilo para contenedor de imagenes */
+.image-container-ropa {
+  overflow: hidden;
+}
+
+.image-container-ropa img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: -15%;
+}

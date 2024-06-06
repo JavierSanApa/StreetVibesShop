@@ -1,38 +1,63 @@
-  /* Ocultar flecha en el enlace de Novedades */
-  #novedadesDropdown .dropdown-toggle::after {
-    display: none;
+/* Ocultar flecha en el enlace de Novedades */
+#novedadesDropdown .dropdown-toggle::after {
+  display: none;
+}
+
+/* Subrayar enlace de Novedades al pasar el ratón */
+#novedadesDropdown .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para destacados y marcas */
+.index-row-des, .index-row-mar {
+  background-color: #f0f0f0;
+  width: 100%;
+  padding: 10px;
+  color: black;
+  font-size: 14px;
+}
+
+/* Estilo para las imagenes de novedades */
+.img-novedades .image-container-nov {
+  width: 300px;
+  height: 220px;
+  max-width: 100%;
+  margin-bottom: 10px;
+  margin: 5px;
+}
+
+/* Estilos para el menú cuando el ancho de la pantalla es menor o igual a 991px */
+@media only screen and (max-width: 991px) {
+  /* Ocultar las imágenes en el menú */
+  .novedades {
+      display: none !important;
   }
-  
-  /* Subrayar enlace de Novedades al pasar el ratón */
-  #novedadesDropdown .nav-link:hover {
-    text-decoration: underline;
-  }
-  
-  /* Estilos para destacados y marcas */
-  .index-row-des, .index-row-mar {
-    background-color: #f0f0f0;
-    width: 100%;
-    padding: 10px;
-    color: black;
-    font-size: 14px;
-  }
-  
-  /* Estilo para las imagenes de novedades */
+
   .img-novedades .image-container-nov {
-    width: 300px;
-    height: 220px;
-    max-width: 100%;
-    margin-bottom: 10px;
-    margin: 5px;
+      display: none !important;
   }
-  
-  .image-container-nov{
-    overflow: hidden;
-  }
-  
-  .image-container-nov img{
-    width: 100%; 
-    height: auto;
-    object-fit:contain;
-    margin-top: -15%;
-  }
+}
+
+/* Asegurar que el menú se oculta al dejar de pasar el ratón */
+.novedades {
+  display: none;
+  transition: display 0.2s ease-in-out;
+}
+
+/* Mostrar el menú al pasar el ratón por encima */
+#novedadesDropdown:hover .novedades,
+#novedadesDropdown:focus .novedades {
+  display: inline-flex !important;
+}
+
+/* Estilo para contenedor de imagenes */
+.image-container-nov {
+  overflow: hidden;
+}
+
+.image-container-nov img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: -15%;
+}
