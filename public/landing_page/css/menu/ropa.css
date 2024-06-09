@@ -17,10 +17,6 @@
   margin: 5px;
 }
 
-.image-container-ropa {
-  overflow: hidden;
-}
-
 .image-container-ropa img {
   width: 100%;
   height: auto;
@@ -41,7 +37,7 @@
 }
 
 /* Asegurar que el menú se oculta al dejar de pasar el ratón */
-.dropdown-menu.ropa {
+.ropa {
   display: none;
   transition: display 0.2s ease-in-out;
 }

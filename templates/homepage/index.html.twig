@@ -45,7 +45,7 @@
                             </a>
                             <!-- Dropdown de Novedades -->
                             <ul class="dropdown-menu novedades" aria-labelledby="navbarDropdownNovedades">
-                                <div class="d-flex nov">    
+                                <div class="d-flex">    
                                     <!-- Columna de novedades -->
                                     <div class="novedades-column">
                                         <li class="index-row-des">DESTACADOS</li>
@@ -115,11 +115,11 @@
                         </li>
 
                         <!-- Dropdown de Ropa -->
-                        <li class="nav-item ropa" id="ropaDropdown">
-                            <a class="nav-link ropa" href="{{ path('ropa_page') }}" id="navbarDropdownRopa" role="button" aria-expanded="false">
+                        <li class="nav-item rop" id="ropaDropdown">
+                            <a class="nav-link rop" href="{{ path('ropa_page') }}" id="navbarDropdownRopa" role="button" aria-expanded="false">
                                 ROPA
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownRopa">
+                            <ul class="dropdown-menu ropa" aria-labelledby="navbarDropdownRopa">
                                 <div class="d-flex">    
                                     <!-- Columna de tipos de ropa -->
                                     <div class="ropa-column">
@@ -147,7 +147,7 @@
                                         <div class="image-container-ropa"><img src="landing_page/img/Menu/Ropa/3.jpg" alt="Foto camiseta ropa"></div>          
                                     </div>
                                 </div>
-                            </ul>
+                            </ul> 
                         </li>
 
                         <!-- Dropdown de Accesorios -->
@@ -155,7 +155,7 @@
                             <a class="nav-link accesorios" href="#" id="navbarDropdownAccesorios" role="button" aria-expanded="false">
                                 ACCESORIOS
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAccesorios">
+                            <ul class="dropdown-menu accesorios" aria-labelledby="navbarDropdownAccesorios">
                                 <div class="d-flex">    
                                     <!-- Columna de tipos de accesorios -->
                                     <div class="accesorios-column">
@@ -179,21 +179,22 @@
                     </ul>
                     <!-- Iconos y selector de idioma -->
                     <ul class="navbar-nav icons">
-                        <li class="nav-item my-auto">
-                            <a href="{{ path('app_logout') }}">Cerrar Sesión</a>
-                        </li>
-
-                        
                         <li class="nav-item">
-                            <a class="nav-link" href="/carrito">
-                                <i class="bi bi-cart"></i>
-                            </a>
+                            {% if isAuthenticated %}
+                                <a class="nav-link" href="{{ path('app_logout') }}">
+                                    <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                                </a>
+                            {% else %}
+                                <a class="nav-link" href="{{ path('app_login') }}">
+                                    <i class="bi bi-person-fill"></i> Iniciar Sesión
+                                </a>
+                            {% endif %}
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="bi bi-search"></i>
                             </a>
-                        </li>
+                        </li>  
                         <li class="nav-item">
                             <div class="idioma">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
