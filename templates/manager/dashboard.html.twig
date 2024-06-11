@@ -13,15 +13,17 @@
 {% block title %}Dashboard Manager{% endblock %}
 
 {% block body %}
+<div class="logout-button">
+    <a href="{{ path('app_logout') }}" class="btn btn-danger">Logout</a>
+</div>
 <div class="dashboard-header">
-    <div class="logout-button">
-        <a href="{{ path('app_logout') }}" class="btn btn-danger">Logout</a>
-    </div>
     <h1 class="dashboard-title">Dashboard Manager</h1>
+</div>
+<div class="dashboard-grafica">
+    <div id="chartdiv"></div>
     <p class="dashboard-description">Cantidad de productos por cada talla</p>
 </div>
 
-<div id="chartdiv"></div>
 {% endblock %}
 
 {% block javascripts %}
@@ -76,6 +78,7 @@ am5.ready(function() {
 
     // Set data
     var data = {{ dataForChart | raw }};
+    console.log(data); // Agregar un console.log para depuración
     xAxis.data.setAll(data);
     series.data.setAll(data);
 

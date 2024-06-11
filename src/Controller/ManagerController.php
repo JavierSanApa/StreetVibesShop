@@ -13,10 +13,10 @@ class ManagerController extends AbstractController
     public function dashboard(EntityManagerInterface $entityManager) {
         // Construir la consulta DQL
         $query = $entityManager->createQuery(
-            'SELECT t.nombre, COUNT(p.cantidad) as cantidad
+            'SELECT t.nombre, SUM(p.cantidad) as cantidad
              FROM App\Entity\Producto p
              JOIN p.talla t
-             GROUP BY t.id'
+             GROUP BY t.nombre'
         );
 
         // Ejecutar la consulta y obtener resultados
@@ -28,9 +28,15 @@ class ManagerController extends AbstractController
         foreach ($resultados as $resultado) {
             $dataForChart[] = [
                 'category' => $resultado['nombre'],
-                'quantity' => $resultado['cantidad']
+                'quantity' => (int) $resultado['cantidad'] // Asegúrate de que sea un número
             ];
         }
+
+        // Pasar los datos al template
+        return $this->render('manager/dashboard.html.twig', [
+            'dataForChart' => json_encode($dataForChart)
+        ]);
+
 
         // Pasar los datos al template
         return $this->render('manager/dashboard.html.twig', [
