@@ -189,6 +189,17 @@
                             {% endif %}
                         </li>
                         <li class="nav-item">
+                            {% if isAuthenticated %}
+                                <a class="nav-link" href="{{ path('app_carrito') }}">
+                                    <i class="bi bi-cart"></i>
+                                </a>
+                            {% else %}
+                                <a class="nav-link" href="{{ path('app_login') }}">
+                                    <i class="bi bi-cart"></i>
+                                </a>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="bi bi-search"></i>
                             </a>
