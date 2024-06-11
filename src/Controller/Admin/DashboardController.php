@@ -7,7 +7,6 @@ use App\Entity\Pedido;
 use App\Entity\Cliente;
 use App\Entity\Usuario;
 use App\Entity\Producto;
-use App\Entity\Valoracion;
 use App\Entity\LineaPedido;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -56,6 +55,5 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('LineaPedido', 'fas fa-list', LineaPedido::class);
         yield MenuItem::linkToCrud('Pedido', 'fas fa-list', Pedido::class);
         yield MenuItem::linkToCrud('Usuario', 'fas fa-list', Usuario::class);
-        yield MenuItem::linkToCrud('Valoracion', 'fas fa-list', Valoracion::class);
     }
 }

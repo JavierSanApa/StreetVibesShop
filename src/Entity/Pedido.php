@@ -17,19 +17,14 @@ class Pedido
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $fecha = null;
 
+    #[ORM\ManyToOne]
     private ?Usuario $usuario = null;
 
-    public function setUsuario(Usuario $usuario): self {
-        $this->usuario = $usuario;
-        return $this;
-    }
-
+    #[ORM\Column(length: 255)]
     private ?string $estado = null;
 
-    public function setEstado(string $estado): self {
-        $this->estado = $estado;
-        return $this;
-    }
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?float $total = null;
 
     public function getId(): ?int
     {
@@ -44,6 +39,57 @@ class Pedido
     public function setFecha(\DateTimeInterface $fecha): static
     {
         $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(Usuario $usuario): static
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    public function getEstado(): ?string
+    {
+        return $this->estado;
+    }
+
+    public function setEstado(string $estado): static
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(float $total): static
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    #[ORM\Column(type: Types::INTEGER)]
+    private ?int $cantidad_productos = null;
+
+    public function getcantidad_productos(): ?int
+    {
+        return $this->cantidad_productos;
+    }
+
+    public function setcantidad_productos(int $cantidad_productos): static
+    {
+        $this->cantidad_productos = $cantidad_productos;
 
         return $this;
     }

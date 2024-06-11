@@ -1,11 +1,10 @@
 <?php
-// src/Controller/CompraController.php
+
 namespace App\Controller;
 
 use App\Entity\Pedido;
 use App\Entity\Producto;
 use App\Entity\LineaPedido;
-use App\Repository\TallaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +39,10 @@ class CompraController extends AbstractController
         $pedido->setFecha(new \DateTime());
         $pedido->setEstado('Pendiente');
 
-        $lineasPedido = [];
+        $total = 0.0;
+        $cantidadProductos = 0; // Inicializar la cantidad de productos
+
+        $lineasPedido = []; // Inicializar el arreglo de líneas de pedido
 
         foreach ($carrito as $claveProductoCarrito => $item) {
             $producto = $this->entityManager->getRepository(Producto::class)->find($item['idProducto']);
@@ -65,6 +67,9 @@ class CompraController extends AbstractController
             $this->entityManager->persist($lineaPedido);
             $this->entityManager->persist($producto);
 
+            $total += $producto->getPrecio() * $item['cantidad'];
+            $cantidadProductos += $item['cantidad']; // Incrementar la cantidad de productos
+
             $lineasPedido[] = [
                 'nombre' => $producto->getNombre(),
                 'cantidad' => $item['cantidad'],
@@ -73,6 +78,8 @@ class CompraController extends AbstractController
             ];
         }
 
+        $pedido->setTotal($total);
+        $pedido->setCantidadProductos($cantidadProductos); // Establecer la cantidad de productos en el pedido
         $this->entityManager->persist($pedido);
         $this->entityManager->flush();
 
@@ -80,6 +87,8 @@ class CompraController extends AbstractController
 
         return $this->render('compra/confirmacion.html.twig', [
             'lineas' => $lineasPedido,
+            'total' => $total,
+            'cantidadProductos' => $cantidadProductos, // Pasar la cantidad de productos a la vista
         ]);
     }
 }
