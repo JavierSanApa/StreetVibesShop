@@ -242,7 +242,7 @@
         
         <!-- Artículos -->
         <div class="row">
-            {% for producto in productos %}
+            {% for producto in pagination %}
                 <div class="col-sm-6 col-md-3 mb-4">
                     <div class="card h-100">
                         <!-- Imagen del artículo -->
@@ -259,7 +259,7 @@
                                         <label for="talla-{{ producto.id }}" class="form-label">Talla:</label>
                                         <select name="talla" id="talla-{{ producto.id }}" class="form-select">
                                             {% for talla in tallas %}
-                                            <option value="{{ talla.id }}">{{ talla.nombre }}</option>
+                                                <option value="{{ talla.id }}">{{ talla.nombre }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -280,7 +280,6 @@
             {% endfor %}
         </div>
 
-
         <!-- Popup de confirmación -->
         <div id="add-to-cart-popup" class="popup">
             <div class="popup-content">
@@ -292,19 +291,43 @@
         <!-- Paginación -->
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                </li>
-                <!-- Números de página -->
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <!-- Agregar más números de página según sea necesario -->
-                <li class="page-item">
-                    <a class="page-link" href="#">Siguiente</a>
-                </li>
+                {% if pagination.currentPageNumber != 1 %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path('ropa_page', {'page': pagination.currentPageNumber - 1}) }}" tabindex="-1">Anterior</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">Anterior</span>
+                    </li>
+                {% endif %}
+                {% set pageCountLimit = 2 %}
+                {% set pageCountToShow = 0 %}
+                {% for page in range(1, pagination.pageCount) %}
+                    {% if pagination.currentPageNumber == page %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ page }}</span>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path('ropa_page', {'page': page}) }}">{{ page }}</a>
+                        </li>
+                    {% endif %}
+                    {% set pageCountToShow = pageCountToShow + 1 %}
+                    {% if pageCountToShow >= pageCountLimit %}
+                        {% set pageCountToShow = pagination.pageCount %}
+                    {% endif %}
+                {% endfor %}
+                {% if pagination.currentPageNumber != pagination.pageCount %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path('ropa_page', {'page': pagination.currentPageNumber + 1}) }}">Siguiente</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">Siguiente</span>
+                    </li>
+                {% endif %}
             </ul>
         </nav>
-    </div>    
-
 
     <!-- Footer -->
     <footer>
@@ -337,7 +360,6 @@
                             <li><a href="#" class="text-white">Drops</a></li>
                             <li><a href="#" class="text-white">Ropa</a></li>
                             <li><a href="#" class="text-white">Accesorios</a></li>
-                            <li><a href="{{ path('mapaweb_page') }}" class="text-white">Mapa Web</a></li>
                         </ul>
                     </div>
                     <!-- Redes sociales -->
@@ -355,7 +377,6 @@
                             <li><a href="#" class="text-white">FAQ</a></li>
                             <li><a href="#" class="text-white">Política de cookies</a></li>
                             <li><a href="#" class="text-white">Condiciones generales de contratación</a></li>
-                            <li><a href="{{ path('accessibilidad_page') }}" class="text-white">Declaración de accesibilidad</a></li>
                         </ul>
                     </div>
                 </div>
@@ -369,44 +390,44 @@
     <script src="{{ asset('landing_page/script.js') }}" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-    var forms = document.querySelectorAll('.add-to-cart-form');
-    var popup = document.getElementById('add-to-cart-popup');
-    var closePopup = document.querySelector('.close-popup');
+            var forms = document.querySelectorAll('.add-to-cart-form');
+            var popup = document.getElementById('add-to-cart-popup');
+            var closePopup = document.querySelector('.close-popup');
 
-    forms.forEach(function(form) {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(form);
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            }).then(function(response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Network response was not ok.');
-                }
-            }).then(function(data) {
-                popup.style.display = 'block'; // Aquí se muestra el popup
+            forms.forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    var formData = new FormData(form);
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    }).then(function(response) {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('Network response was not ok.');
+                        }
+                    }).then(function(data) {
+                        popup.style.display = 'block'; // Aquí se muestra el popup
+                        setTimeout(function() {
+                            popup.style.display = 'none';
+                        }, 3000); // Extendido a 3 segundos
+                    }).catch(function(error) {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+
+            closePopup.addEventListener('click', function() {
+                popup.style.animation = 'fadeOut 1s forwards'; // Animación de salida
                 setTimeout(function() {
-                    popup.style.display = 'none';
-                }, 3000); // Extendido a 3 segundos
-            }).catch(function(error) {
-                console.error('Error:', error);
+                    popup.style.display = 'none'; // Ocultar el popup después de la animación de salida
+                }, 1000); // Extendido a 1 segundo
             });
         });
-    });
-
-    closePopup.addEventListener('click', function() {
-        popup.style.animation = 'fadeOut 1s forwards'; // Animación de salida
-        setTimeout(function() {
-            popup.style.display = 'none'; // Ocultar el popup después de la animación de salida
-        }, 1000); // Extendido a 1 segundo
-    });
-});
 
     </script>
     {% endblock %}

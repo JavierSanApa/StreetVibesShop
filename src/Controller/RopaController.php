@@ -4,7 +4,8 @@
 namespace App\Controller;
 
 use App\Repository\ProductoRepository;
-use Symfony\Bundle\SecurityBundle\Security;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,18 +17,20 @@ class RopaController extends AbstractController
     public function ropa(
         ProductoRepository $productoRepository,
         TallaRepository $tallaRepository,
-        Security $security // Asegúrate de agregar Security al método
+        PaginatorInterface $paginator, // Importa el servicio PaginatorInterface
+        Request $request // Importa la clase Request
     ): Response {
-        $productos = $productoRepository->findProductosUnicos();
+        $productosQuery = $productoRepository->findProductosUnicos();
+        $pagination = $paginator->paginate(
+            $productosQuery, // Query sin ejecutar
+            $request->query->getInt('page', 1), // Número de página, por defecto 1
+            8 // Número de artículos por página
+        );
         $tallas = $tallaRepository->findAll();
         
-        // Obtenemos el estado de autenticación del usuario
-        $isLoggedIn = $security->isGranted('IS_AUTHENTICATED_FULLY');
-
         return $this->render('ropa/index.html.twig', [
-            'productos' => $productos,
+            'pagination' => $pagination, // Pasamos el objeto de paginación a la plantilla Twig
             'tallas' => $tallas,
-            'isLoggedIn' => $isLoggedIn, // Pasamos el estado de autenticación a la plantilla Twig
         ]);
     }
 }
