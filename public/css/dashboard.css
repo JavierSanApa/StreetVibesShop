@@ -24,7 +24,7 @@
 }
 
 /* Estilo para los contenedores de las gráficas */
-.dashboard-grafica, .dashboard-grafica2 {
+.dashboard-grafica, .dashboard-grafica2, .dashboard-grafica3 {
     text-align: center;
     width: 80%; /* Hacer que el contenedor ocupe el 80% del ancho disponible */
     margin: 0 auto 2rem; /* Centrar horizontalmente y dar margen inferior */
@@ -35,15 +35,15 @@
 }
 
 /* Estilo para la descripción del dashboard */
-.dashboard-description, .dashboard-description2 {
+.dashboard-description, .dashboard-description2, .dashboard-description3 {
     font-weight: bold;
     color: black;
     font-size: large;
 }
 
-/* Estilo para la gráfica */
-#chartdiv, #second-chartdiv {
+/* Estilo para las gráficas */
+#chartdiv, #second-chartdiv, #third-chartdiv {
     width: 100%;
     height: 400px; /* Ajusta la altura deseada */
-    margin: 2rem auto; /* Centra la gráfica y le da un margen superior e inferior */
+    margin: 1rem auto; /* Centra la gráfica y le da un margen superior e inferior */
 }

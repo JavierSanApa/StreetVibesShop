@@ -79,7 +79,7 @@ class CompraController extends AbstractController
         }
 
         $pedido->setTotal($total);
-        $pedido->setCantidadProductos($cantidadProductos); // Establecer la cantidad de productos en el pedido
+        $pedido->setcantidad_productos($cantidadProductos); // Establecer la cantidad de productos en el pedido
         $this->entityManager->persist($pedido);
         $this->entityManager->flush();
 

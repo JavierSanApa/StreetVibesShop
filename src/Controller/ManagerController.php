@@ -49,10 +49,30 @@ class ManagerController extends AbstractController
             ];
         }
 
+        // Consulta para obtener la cantidad de dinero generada por día
+        $queryDineroPorDia = $entityManager->createQuery(
+            'SELECT p.fecha, SUM(p.total) AS total_generado
+             FROM App\Entity\Pedido p
+             GROUP BY p.fecha
+             ORDER BY p.fecha'
+        );
+
+        // Ejecutar la consulta y obtener resultados para la tercera gráfica
+        $DineroPorDia = $queryDineroPorDia->getResult();
+        $dataForThirdChart = [];
+
+        foreach ($DineroPorDia as $dinero) {
+            $dataForThirdChart[] = [
+                'category' => $dinero['fecha']->format('Y-m-d'),
+                'quantity' => (int) $dinero['total_generado']
+            ];
+        }
+
         // Pasar los datos al template
         return $this->render('manager/dashboard.html.twig', [
             'dataForChart' => json_encode($dataForChart),
-            'dataForSecondChart' => json_encode($dataForSecondChart)
+            'dataForSecondChart' => json_encode($dataForSecondChart),
+            'dataForThirdChart' => json_encode($dataForThirdChart)
         ]);
     }
 }

@@ -30,6 +30,10 @@
     <p class="dashboard-description2">Cantidad de productos por pedido</p>
 </div>
 
+<div class="dashboard-grafica3">
+    <div id="third-chartdiv"></div>
+    <p class="dashboard-description3">Suma de precios por pedido agrupados por día</p>
+</div>
 
 {% endblock %}
 
@@ -148,6 +152,63 @@
         // Make stuff animate on load for the second chart
         series2.appear(1000);
         chart2.appear(1000, 100);
+        
+        // Create root element for the third chart
+        var root3 = am5.Root.new("third-chartdiv");
+
+        // Set themes for the third chart
+        root3.setThemes([
+            am5themes_Animated.new(root3)
+        ]);
+
+        // Create third chart
+        var chart3 = root3.container.children.push(am5xy.XYChart.new(root3, {
+            panX: true,
+            panY: true,
+            wheelX: "panX",
+            wheelY: "zoomX",
+            pinchZoomX: true
+        }));
+
+        // Add cursor for the third chart
+        var cursor3 = chart3.set("cursor", am5xy.XYCursor.new(root3, {}));
+        cursor3.lineY.set("visible", false);
+
+        // Create axes for the third chart
+        var xAxis3 = chart3.xAxes.push(am5xy.CategoryAxis.new(root3, {
+            categoryField: "category",
+            renderer: am5xy.AxisRendererX.new(root3, {}),
+            tooltip: am5.Tooltip.new(root3, {})
+        }));
+
+        var yAxis3 = chart3.yAxes.push(am5xy.ValueAxis.new(root3, {
+            renderer: am5xy.AxisRendererY.new(root3, {})
+        }));
+
+        // Create series for the third chart
+        var series3 = chart3.series.push(am5xy.ColumnSeries.new(root3, {
+            name: "Series 1",
+            xAxis: xAxis3,
+            yAxis: yAxis3,
+            valueYField: "quantity",
+            categoryXField: "category",
+            tooltip: am5.Tooltip.new(root3, {
+                labelText: "{valueY}"
+            })
+        }));
+
+        series3.columns.template.setAll({ cornerRadiusTL: 5, cornerRadiusTR: 5 });
+
+        // Set data for the third chart
+        var data3 = {{ dataForThirdChart | raw }};
+        console.log(data3); // Agregar un console.log para depuración
+        xAxis3.data.setAll(data3);
+        series3.data.setAll(data3);
+
+        // Make stuff animate on load for the third chart
+        series3.appear(1000);
+        chart3.appear(1000, 100);
+
     });
 </script>
 
