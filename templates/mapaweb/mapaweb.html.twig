@@ -242,76 +242,82 @@
     <h2 class="text-center">MAPA WEB</h2>
 
     <div class="row">
-        <div class="col-md-6">
-            <p class="text-justify">
-                <ul>
-                    <li><a href="#">Inicio</a>
-                        <ul>
-                            <li><a href="#">NOVEDADES</a>
-                                <ul>
-                                    <li><a href="#">Ver todas las novedades</a></li>
-                                    <li><a href="#">Novedades drops</a></li>
-                                    <li><a href="#">Novedades ropa</a></li>
-                                    <li><a href="#">Novedades calzado</a></li>
-                                    <li><a href="#">Novedades Accesorios</a></li>
-                                    <li><a href="#">Nike</a></li>
-                                    <li><a href="#">FakeGods</a></li>
-                                    <li><a href="#">Adidas</a></li>
-                                    <li><a href="#">TwoJeys</a></li>
-                                    <li><a href="#">Puma</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">DROPS</a></li>
-                            <li><a href="#">CALZADO</a>
-                                <ul>
-                                    <li><a href="#">Ver toda el calzado</a></li>
-                                    <li><a href="#">Zapatillas</a></li>
-                                    <li><a href="#">Botas</a></li>
-                                    <li><a href="#">Sandalias</a></li>
-                                    <li><a href="#">Tacones</a></li>
-                                    <li><a href="#">Nike</a></li>
-                                    <li><a href="#">Adidas</a></li>
-                                    <li><a href="#">Puma</a></li>
-                                    <li><a href="#">Reebok</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </p>
-        </div>
-
-        <div class="col-md-6">
-            <p class="text-justify">
-                <ul>
-                    <li><a href="#">ROPA</a>
-                        <ul>
-                            <li><a href="#">Ver toda la ropa</a></li>
-                            <li><a href="#">Chaquetas</a></li>
-                            <li><a href="#">Camisetas</a></li>
-                            <li><a href="#">Pantalones</a></li>
-                            <li><a href="#">Sudaderas</a></li>
-                            <li><a href="#">Carhartt</a></li>
-                            <li><a href="#">Kenzo</a></li>
-                            <li><a href="#">Lacoste</a></li>
-                            <li><a href="#">Pleasures</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">ACCESORIOS</a>
-                        <ul>
-                            <li><a href="#">Ver todos los accesorios</a></li>
-                            <li><a href="#">Decoración</a></li>
-                            <li><a href="#">Joyería</a></li>
-                            <li><a href="#">Gorros y gorras</a></li>
-                            <li><a href="#">Mochilas</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">LOGIN/REGISTER</a>
-                    <li><a href="#">CARRITO</a>
-                </ul>
-            </p>
-        </div>
+    <div class="col-md-6">
+        <p class="text-justify">
+            <ul>
+                <li>
+                    <a href="{{ path('app_homepage') }}">Inicio</a>
+                    <ul>
+                        <li>
+                            <a href="{{ path('novedades_page') }}">NOVEDADES</a>
+                            <ul>
+                                <li><a href="{{ path('novedades_page') }}">Ver todas las novedades</a></li>
+                                <li><a href="{{ path('novedades_page') }}">Novedades drops</a></li>
+                                <li><a href="{{ path('novedades_page') }}">Novedades ropa</a></li>
+                                <li><a href="{{ path('novedades_page') }}">Novedades calzado</a></li>
+                                <li><a href="{{ path('novedades_page') }}">Novedades Accesorios</a></li>
+                                <li><a href="{{ path('novedades_page') }}">Nike</a></li>
+                                <li><a href="{{ path('novedades_page') }}">FakeGods</a></li>
+                                <li><a href="{{ path('novedades_page') }}">Adidas</a></li>
+                                <li><a href="{{ path('novedades_page') }}">TwoJeys</a></li>
+                                <li><a href="{{ path('novedades_page') }}">Puma</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ path('drops_page') }}">DROPS</a></li>
+                        <li>
+                            <a href="{{ path('calzado_page') }}">CALZADO</a>
+                            <ul>
+                                <li><a href="{{ path('calzado_page') }}">Ver toda el calzado</a></li>
+                                <li><a href="{{ path('calzado_page') }}">Zapatillas</a></li>
+                                <li><a href="{{ path('calzado_page') }}">Botas</a></li>
+                                <li><a href="{{ path('calzado_page') }}">Sandalias</a></li>
+                                <li><a href="{{ path('calzado_page') }}">Tacones</a></li>
+                                <li><a href="{{ path('calzado_page') }}">Nike</a></li>
+                                <li><a href="{{ path('calzado_page') }}">Adidas</a></li>
+                                <li><a href="{{ path('calzado_page') }}">Puma</a></li>
+                                <li><a href="{{ path('calzado_page') }}">Reebok</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
     </div>
+
+    <div class="col-md-6">
+        <p class="text-justify">
+            <ul>
+                <li>
+                    <a href="{{ path('ropa_page') }}">ROPA</a>
+                    <ul>
+                        <li><a href="{{ path('ropa_page') }}">Ver toda la ropa</a></li>
+                        <li><a href="{{ path('ropa_page') }}">Chaquetas</a></li>
+                        <li><a href="{{ path('ropa_page') }}">Camisetas</a></li>
+                        <li><a href="{{ path('ropa_page') }}">Pantalones</a></li>
+                        <li><a href="{{ path('ropa_page') }}">Sudaderas</a></li>
+                        <li><a href="{{ path('ropa_page') }}">Carhartt</a></li>
+                        <li><a href="{{ path('ropa_page') }}">Kenzo</a></li>
+                        <li><a href="{{ path('ropa_page') }}">Lacoste</a></li>
+                        <li><a href="{{ path('ropa_page') }}">Pleasures</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ path('accesorios_page') }}">ACCESORIOS</a>
+                    <ul>
+                        <li><a href="{{ path('accesorios_page') }}">Ver todos los accesorios</a></li>
+                        <li><a href="{{ path('accesorios_page') }}">Decoración</a></li>
+                        <li><a href="{{ path('accesorios_page') }}">Joyería</a></li>
+                        <li><a href="{{ path('accesorios_page') }}">Gorros y gorras</a></li>
+                        <li><a href="{{ path('accesorios_page') }}">Mochilas</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ path('app_login') }}">LOGIN/REGISTER</a></li>
+                <li><a href="{{ path('app_carrito') }}">CARRITO</a></li>
+            </ul>
+        </p>
+    </div>
+</div>
+
 </div>
 
 

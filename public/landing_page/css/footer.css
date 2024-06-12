@@ -1,7 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* El contenedor principal debe crecer para ocupar el espacio disponible */
+.content-wrapper {
+    flex: 1;
+}
+
 .footer {
     background-color: #212529; /* Oscuro */
     color: #ffffff; /* Blanco */
-    margin-bottom: 0px;
+    width: 100%; /* Ocupa todo el ancho */
+    text-align: center; /* Centra el texto */
+    padding: 10px 0; /* Espacio dentro del footer */
+    bottom: 0;
 }
 
 .footer h5 {

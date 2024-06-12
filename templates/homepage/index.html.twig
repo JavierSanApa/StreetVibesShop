@@ -21,11 +21,11 @@
 {% endblock %}
 
 {% block body %}
-    <div class="contenido_principal">   
-        <!-- MENU -->
-        <div id="menu">
+<div class="content-wrapper">
+    <!-- MENU -->
+    <div id="menu">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="{{ path('app_landing_page') }}">
+                <a class="navbar-brand" href="{% if isAuthenticated %}{{ path('app_homepage') }}{% else %}{{ path('app_landing_page') }}{% endif %}">
                     <img class="logo img-fluid" src="landing_page/img/Logo.png" alt="Logo" />
                 </a>
 
@@ -40,7 +40,7 @@
 
                         <!-- Elementos del menú principal -->
                         <li class="nav-item dropdown" id="novedadesDropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownNovedades" role="button" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="{{ path('novedades_page') }}" id="navbarDropdownNovedades" role="button" aria-expanded="false">
                                 NOVEDADES
                             </a>
                             <!-- Dropdown de Novedades -->
@@ -49,21 +49,21 @@
                                     <!-- Columna de novedades -->
                                     <div class="novedades-column">
                                         <li class="index-row-des">DESTACADOS</li>
-                                        <li><a class="dropdown-item" href="#">Ver todas las novedades</a></li>
-                                        <li><a class="dropdown-item" href="#">Novedades drops</a></li>
-                                        <li><a class="dropdown-item" href="#">Novedades ropa</a></li>
-                                        <li><a class="dropdown-item" href="#">Novedades calzado</a></li>
-                                        <li><a class="dropdown-item" href="#">Novedades Accesorios</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">Ver todas las novedades</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">Novedades drops</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">Novedades ropa</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">Novedades calzado</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">Novedades Accesorios</a></li>
                                     </div>
 
                                     <!-- Columna de marcas -->
                                     <div class="marcas-column">
                                         <li class="index-row-mar">MARCAS</li>
-                                        <li><a class="dropdown-item" href="#">Nike</a></li>
-                                        <li><a class="dropdown-item" href="#">FakeGods</a></li>
-                                        <li><a class="dropdown-item" href="#">Adidas</a></li>
-                                        <li><a class="dropdown-item" href="#">TwoJeys</a></li>
-                                        <li><a class="dropdown-item" href="#">Puma</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">Nike</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">FakeGods</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">Adidas</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">TwoJeys</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('novedades_page') }}">Puma</a></li>
                                     </div>
 
                                     <!-- Columna de imagenes -->
@@ -76,11 +76,11 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">DROPS</a>
+                            <a class="nav-link" href="{{ path('drops_page') }}">DROPS</a>
                         </li>
                         <!-- Dropdown de Calzado -->
                         <li class="nav-item cal" id="calzadoDropdown">
-                            <a class="nav-link cal" href="#" id="navbarDropdownCalzado" role="button" aria-expanded="false">
+                            <a class="nav-link cal" href="{{ path('calzado_page') }}"id="navbarDropdownCalzado" role="button" aria-expanded="false">
                                 CALZADO
                             </a>
                             <ul class="dropdown-menu calzado" aria-labelledby="navbarDropdownCalzado">
@@ -88,20 +88,20 @@
                                     <!-- Columna de tipos de calzado -->
                                     <div class="calzado-column">
                                         <li class="index-row-des">DESTACADOS</li>
-                                        <li><a class="dropdown-item" href="#">Ver toda el calzado</a></li>
-                                        <li><a class="dropdown-item" href="#">Zapatillas</a></li>
-                                        <li><a class="dropdown-item" href="#">Botas</a></li>
-                                        <li><a class="dropdown-item" href="#">Sandalias</a></li>
-                                        <li><a class="dropdown-item" href="#">Tacones</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('calzado_page') }}">Ver toda el calzado</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('calzado_page') }}">Zapatillas</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('calzado_page') }}">Botas</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('calzado_page') }}">Sandalias</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('calzado_page') }}">Tacones</a></li>
                                     </div>
 
                                     <!-- Columna de marcas de calzado -->
                                     <div class="marcas-calzado-column">
                                         <li class="index-row-mar">MARCAS</li>
-                                        <li><a class="dropdown-item" href="#">Nike</a></li>
-                                        <li><a class="dropdown-item" href="#">Adidas</a></li>
-                                        <li><a class="dropdown-item" href="#">Puma</a></li>
-                                        <li><a class="dropdown-item" href="#">Reebok</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('calzado_page') }}">Nike</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('calzado_page') }}">Adidas</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('calzado_page') }}">Puma</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('calzado_page') }}">Reebok</a></li>
                                     </div>
 
                                     <!-- Columna de imágenes de calzado -->
@@ -125,19 +125,19 @@
                                     <div class="ropa-column">
                                         <li class="index-row-des">DESTACADOS</li>
                                         <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Ver toda la ropa</a></li>
-                                        <li><a class="dropdown-item" href="#">Chaquetas</a></li>
-                                        <li><a class="dropdown-item" href="#">Camisetas</a></li>
-                                        <li><a class="dropdown-item" href="#">Pantalones</a></li>
-                                        <li><a class="dropdown-item" href="#">Sudaderas</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Chaquetas</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Camisetas</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Pantalones</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Sudaderas</a></li>
                                     </div>
 
                                     <!-- Columna de marcas de ropa -->
                                     <div class="marcas-ropa-column">
                                         <li class="index-row-mar">MARCAS</li>
-                                        <li><a class="dropdown-item" href="#">Carhartt</a></li>
-                                        <li><a class="dropdown-item" href="#">Kenzo</a></li>
-                                        <li><a class="dropdown-item" href="#">Lacoste</a></li>
-                                        <li><a class="dropdown-item" href="#">Pleasures</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Carhartt</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Kenzo</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Lacoste</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('ropa_page') }}">Pleasures</a></li>
                                     </div>
 
                                     <!-- Columna de imágenes de ropa -->
@@ -152,7 +152,7 @@
 
                         <!-- Dropdown de Accesorios -->
                         <li class="nav-item accesorios" id="accesoriosDropdown">
-                            <a class="nav-link accesorios" href="#" id="navbarDropdownAccesorios" role="button" aria-expanded="false">
+                            <a class="nav-link accesorios" href="{{ path('accesorios_page') }}" id="navbarDropdownAccesorios" role="button" aria-expanded="false">
                                 ACCESORIOS
                             </a>
                             <ul class="dropdown-menu accesorios" aria-labelledby="navbarDropdownAccesorios">
@@ -160,11 +160,11 @@
                                     <!-- Columna de tipos de accesorios -->
                                     <div class="accesorios-column">
                                         <li class="index-row-des">DESTACADOS</li>
-                                        <li><a class="dropdown-item" href="#">Ver todos los accesorios</a></li>
-                                        <li><a class="dropdown-item" href="#">Decoración</a></li>
-                                        <li><a class="dropdown-item" href="#">Joyería</a></li>
-                                        <li><a class="dropdown-item" href="#">Gorros y gorras</a></li>
-                                        <li><a class="dropdown-item" href="#">Mochilas</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('accesorios_page') }}">Ver todos los accesorios</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('accesorios_page') }}">Decoración</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('accesorios_page') }}">Joyería</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('accesorios_page') }}">Gorros y gorras</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('accesorios_page') }}">Mochilas</a></li>
                                     </div>
 
                                     <!-- Columna de imágenes de accesorios -->
@@ -222,9 +222,9 @@
                     </ul>
                 </div>
             </nav>
-        </div> <!-- menu -->
-
-        <!-- carousel -->
+    </div> <!-- menu -->
+    
+    <!-- carousel -->
         <div id="carouselSlides" class="carousel_slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="overlay-text">
@@ -242,9 +242,6 @@
                 </div>
             </div>
         </div>
-    </div>
-        
-        
 
     <!-- Footer -->
     <footer>
@@ -272,11 +269,16 @@
                     <div class="col-md-2">
                         <h5>Enlaces Rápidos</h5>
                         <ul class="list-unstyled">
-                            <li><a href="index.html" class="text-white">Inicio</a></li>
-                            <li><a href="#" class="text-white">Novedades</a></li>
-                            <li><a href="#" class="text-white">Drops</a></li>
-                            <li><a href="#" class="text-white">Ropa</a></li>
-                            <li><a href="#" class="text-white">Accesorios</a></li>
+                            <li>
+                                {% if isAuthenticated %}<a href="{{ path('app_homepage') }}"     class="text-white">Inicio</a>
+                                {% else %}              <a href="{{ path('app_landing_page') }}" class="text-white">Inicio</a>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{ path('novedades_page') }}"  class="text-white">Novedades</a></li>
+                            <li><a href="{{ path('drops_page') }}"      class="text-white">Drops</a></li>
+                            <li><a href="{{ path('ropa_page') }}"       class="text-white">Ropa</a></li>
+                            <li><a href="{{ path('accesorios_page') }}" class="text-white">Accesorios</a></li>
+                            <li><a href="{{ path('mapaweb_page') }}"    class="text-white">Mapa Web</a></li>
                         </ul>
                     </div>
                     <!-- Redes sociales -->
@@ -294,6 +296,7 @@
                             <li><a href="#" class="text-white">FAQ</a></li>
                             <li><a href="#" class="text-white">Política de cookies</a></li>
                             <li><a href="#" class="text-white">Condiciones generales de contratación</a></li>
+                            <li><a href="{{ path('accessibilidad_page') }}" class="text-white">Declaración de accesibilidad</a></li>
                         </ul>
                     </div>
                 </div>
