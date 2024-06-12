@@ -1,6 +1,7 @@
 .footer {
     background-color: #212529; /* Oscuro */
     color: #ffffff; /* Blanco */
+    margin-bottom: 0px;
 }
 
 .footer h5 {

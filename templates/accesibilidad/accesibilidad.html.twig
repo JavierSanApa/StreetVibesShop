@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     
-    <!-- FONTSAA -->
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Protest+Strike&display=swap" rel="stylesheet">
@@ -227,83 +227,29 @@
     <div class="container mt-5 mb-5">
         <div class="row mb-3">
             <div class="col">
-                <h2>Inicio/Ropa</h2>
-                <p>8 artículos</p>
-            </div>
-            <div class="col text-end">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button">
-                    Ordenar por
-                </button>
-                <button class="btn btn-outline-secondary ms-2">
-                    Filtro
-                </button>
-            </div>
-        </div>
-        
-        <!-- Artículos -->
-        <div class="row">
-            {% for producto in productos %}
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="card h-100">
-                        <!-- Imagen del artículo -->
-                        <img src="{{ asset('landing_page/img/Articulos/Ropa/' ~ producto.id ~ '.JPG') }}" class="card-img-top" alt="{{ producto.nombre }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ producto.nombre }}</h5>
-                            <p class="card-text">Cantidad disponible: {{ producto.cantidad }}</p>
-                            <!-- Añadir precio del producto -->
-                            <p class="card-text">Precio: {{ producto.precio | number_format(2, '.', ',') }} €</p>
-                            <!-- Formulario para añadir producto al carrito con selección de talla -->
-                            {% if isAuthenticated %}
-                                <form action="{{ path('app_añadir_a_carrito', {'idProducto': producto.id}) }}" class="add-to-cart-form" method="post">
-                                    <div class="mb-3">
-                                        <label for="talla-{{ producto.id }}" class="form-label">Talla:</label>
-                                        <select name="talla" id="talla-{{ producto.id }}" class="form-select">
-                                            {% for talla in tallas %}
-                                            <option value="{{ talla.id }}">{{ talla.nombre }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="cantidad-{{ producto.id }}" class="form-label">Cantidad:</label>
-                                        <input type="number" id="cantidad-{{ producto.id }}" name="cantidad" value="1" min="1" max="{{ producto.cantidad }}" class="form-control"/>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Añadir al carrito</button>
-                                </form>
-                            {% else %}
-                                <a href="{{ path('app_login') }}" class="btn btn-primary">Iniciar sesión para añadir al carrito</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <p>No hay productos disponibles.</p>
-            {% endfor %}
-        </div>
-
-
-        <!-- Popup de confirmación -->
-        <div id="add-to-cart-popup" class="popup">
-            <div class="popup-content">
-                <span class="close-popup">&times;</span>
-                <p>Producto añadido correctamente al carrito.</p>
+                <h4>Inicio/Declaración de Accesibilidad</h4>
+                <hr>
             </div>
         </div>
 
-        <!-- Paginación -->
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                </li>
-                <!-- Números de página -->
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <!-- Agregar más números de página según sea necesario -->
-                <li class="page-item">
-                    <a class="page-link" href="#">Siguiente</a>
-                </li>
+        <h2 class="text-center">DECLARACIÓN DE ACCESIBILIDAD</h2>
+        <p class="text-justify">
+            El Ministerio de Hacienda y Función Pública se ha comprometido a hacer accesibles sus sitios web de conformidad con el Real Decreto 1112/2018, de 7 de septiembre, sobre accesibilidad de los sitios web y aplicaciones para dispositivos móviles del sector público (en adelante, Real Decreto 1112/2018, de 7 de septiembre). La presente declaración de accesibilidad se aplica al sitio web <a href="//www.hacienda.gob.es" target="_blank">www.hacienda.gob.es</a> (los subdominios de este sitio web tendrán sus propias declaraciones de accesibilidad).
+        </p>
+
+        <h3 class="text-center mt-4">SITUACIÓN DE CUMPLIMIENTO</h3>
+        <p class="text-justify">
+            Este sitio web es parcialmente conforme con el Real Decreto 1112/2018, de 7 de septiembre, debido a la falta de conformidad de los aspectos que se indican a continuación.
+        </p>
+
+        <h3 class="text-center mt-4">CONTENIDO NO ACCESIBLE</h3>
+        <p class="text-justify">
+            El contenido que se recoge a continuación no es accesible por lo siguiente:
+            <ul>
+                <li>Enlaces rotos: debido a que la página está incompleta presenta varios enlaces rotos</li>
             </ul>
-        </nav>
-    </div>    
+        </p>
+    </div>
 
 
     <!-- Footer -->
@@ -326,7 +272,7 @@
                     <div class="col-md-2">
                         <h5>Contacto</h5>
                         <p><i class="bi bi-telephone-fill"></i> +34 123 456 789</p>
-                        <p><i class="bi bi-envelope-fill"></i> info@streetvibesshop.com</p>
+                        <p><i class="bi bi-envelope-fill"></i> info@svs.com</p>
                     </div>
                     <!-- Enlaces rápidos -->
                     <div class="col-md-2">
@@ -337,7 +283,6 @@
                             <li><a href="#" class="text-white">Drops</a></li>
                             <li><a href="#" class="text-white">Ropa</a></li>
                             <li><a href="#" class="text-white">Accesorios</a></li>
-                            <li><a href="{{ path('mapaweb_page') }}" class="text-white">Mapa Web</a></li>
                         </ul>
                     </div>
                     <!-- Redes sociales -->
@@ -355,7 +300,7 @@
                             <li><a href="#" class="text-white">FAQ</a></li>
                             <li><a href="#" class="text-white">Política de cookies</a></li>
                             <li><a href="#" class="text-white">Condiciones generales de contratación</a></li>
-                            <li><a href="{{ path('accessibilidad_page') }}" class="text-white">Declaración de accesibilidad</a></li>
+                            <li><a href="#" class="text-white">Declaración de accesibilidad</a></li>
                         </ul>
                     </div>
                 </div>
@@ -367,48 +312,7 @@
     {% block scripts %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="{{ asset('landing_page/script.js') }}" defer></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    var forms = document.querySelectorAll('.add-to-cart-form');
-    var popup = document.getElementById('add-to-cart-popup');
-    var closePopup = document.querySelector('.close-popup');
 
-    forms.forEach(function(form) {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(form);
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            }).then(function(response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Network response was not ok.');
-                }
-            }).then(function(data) {
-                popup.style.display = 'block'; // Aquí se muestra el popup
-                setTimeout(function() {
-                    popup.style.display = 'none';
-                }, 3000); // Extendido a 3 segundos
-            }).catch(function(error) {
-                console.error('Error:', error);
-            });
-        });
-    });
-
-    closePopup.addEventListener('click', function() {
-        popup.style.animation = 'fadeOut 1s forwards'; // Animación de salida
-        setTimeout(function() {
-            popup.style.display = 'none'; // Ocultar el popup después de la animación de salida
-        }, 1000); // Extendido a 1 segundo
-    });
-});
-
-    </script>
     {% endblock %}
 {% endblock %}
 </html>
