@@ -228,7 +228,7 @@
         <div class="row mb-3">
             <div class="col">
                 <h2>Inicio/Ropa</h2>
-                <p>8 artículos</p>
+                <p>10 artículos</p>
             </div>
             <div class="col text-end">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button">
@@ -246,7 +246,7 @@
                 <div class="col-sm-6 col-md-3 mb-4">
                     <div class="card h-100">
                         <!-- Imagen del artículo -->
-                        <img src="{{ asset('landing_page/img/Articulos/Ropa/' ~ producto.id ~ '.JPG') }}" class="card-img-top" alt="{{ producto.nombre }}">
+                        <img src="{{ asset('landing_page/img/Articulos/Ropa/' ~ producto.id ~ '.jpg') }}" class="card-img-top" alt="{{ producto.nombre }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ producto.nombre }}</h5>
                             <p class="card-text">Cantidad disponible: {{ producto.cantidad }}</p>
@@ -279,6 +279,7 @@
                 <p>No hay productos disponibles.</p>
             {% endfor %}
         </div>
+
 
         <!-- Popup de confirmación -->
         <div id="add-to-cart-popup" class="popup">

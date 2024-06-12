@@ -23,7 +23,51 @@ class Producto
     private ?int $cantidad = null;
 
     #[ORM\Column(type: 'decimal', scale: 2)]
-    private $precio;
+    private ?string $precio = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $categoria = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTalla(): ?Talla
+    {
+        return $this->talla;
+    }
+
+    public function setTalla(?Talla $talla): self
+    {
+        $this->talla = $talla;
+
+        return $this;
+    }
+
+    public function getNombre(): ?string
+    {
+        return $this->nombre;
+    }
+
+    public function setNombre(string $nombre): self
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    public function getCantidad(): ?int
+    {
+        return $this->cantidad;
+    }
+
+    public function setCantidad(int $cantidad): self
+    {
+        $this->cantidad = $cantidad;
+
+        return $this;
+    }
 
     public function getPrecio(): ?string
     {
@@ -37,41 +81,15 @@ class Producto
         return $this;
     }
 
-    public function getId(): ?int
+    public function getCategoria(): ?string
     {
-        return $this->id;
+        return $this->categoria;
     }
 
-    public function getTallaId(): ?Talla
+    public function setCategoria(string $categoria): self
     {
-        return $this->talla;
-    }
+        $this->categoria = $categoria;
 
-    public function setTallaId(?Talla $talla): static
-    {
-        $this->talla = $talla;
-
-        return $this;
-    }
-
-    public function getNombre(): ?string
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre(string $nombre): static
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    public function getCantidad(): ?int {
-        return $this->cantidad;
-    }
-    
-    public function setCantidad(int $cantidad): self {
-        $this->cantidad = $cantidad;
         return $this;
     }
 }

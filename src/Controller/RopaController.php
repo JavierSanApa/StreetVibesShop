@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Repository\TallaRepository; // Asegúrate de importar TallaRepository
+use App\Repository\TallaRepository;
 
 class RopaController extends AbstractController
 {
@@ -17,19 +17,24 @@ class RopaController extends AbstractController
     public function ropa(
         ProductoRepository $productoRepository,
         TallaRepository $tallaRepository,
-        PaginatorInterface $paginator, // Importa el servicio PaginatorInterface
-        Request $request // Importa la clase Request
+        PaginatorInterface $paginator,
+        Request $request
     ): Response {
-        $productosQuery = $productoRepository->findProductosUnicos();
+        // Filtrar los productos por categoría "Ropa"
+        $queryBuilder = $productoRepository->createQueryBuilder('p')
+            ->where('p.categoria = :categoria')
+            ->setParameter('categoria', 'Ropa');
+
         $pagination = $paginator->paginate(
-            $productosQuery, // Query sin ejecutar
+            $queryBuilder, // Query sin ejecutar
             $request->query->getInt('page', 1), // Número de página, por defecto 1
             8 // Número de artículos por página
         );
+
         $tallas = $tallaRepository->findAll();
         
         return $this->render('ropa/index.html.twig', [
-            'pagination' => $pagination, // Pasamos el objeto de paginación a la plantilla Twig
+            'pagination' => $pagination,
             'tallas' => $tallas,
         ]);
     }

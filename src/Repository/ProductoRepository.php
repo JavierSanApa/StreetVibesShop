@@ -26,12 +26,20 @@ class ProductoRepository extends ServiceEntityRepository
         return $producto ? $producto->getNombre() : null;
     }
 
-    public function findProductosUnicos()
+    /**
+     * Encuentra los últimos productos por categoría.
+     *
+     * @param string $categoria La categoría de los productos.
+     * @param int $limit El número máximo de productos a obtener (por defecto 2).
+     * @return array|null Los últimos productos por categoría, o null si no se encuentran.
+     */
+    public function findUltimosProductosPorCategoria(string $categoria, int $limit = 2): ?array
     {
-        // Suponiendo que tienes un campo 'nombreProducto' o algo similar para agrupar
         $qb = $this->createQueryBuilder('p')
-            ->select('p')
-            ->groupBy('p.nombre'); // Ajusta 'nombreProducto' según tu esquema
+            ->andWhere('p.categoria = :categoria')
+            ->setParameter('categoria', $categoria)
+            ->orderBy('p.id', 'DESC') // Ordena por ID descendente (asumiendo que ID es correlativo a la fecha de creación)
+            ->setMaxResults($limit);
 
         $query = $qb->getQuery();
 
