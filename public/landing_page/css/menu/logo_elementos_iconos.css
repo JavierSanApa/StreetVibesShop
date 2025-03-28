@@ -27,6 +27,17 @@
     }
   }
 
+  /* Estilos específicos para pantallas pequeñas (menos de 992px) */
+@media (max-width: 991.98px) {
+  /* Alineación del botón hamburguesa en el centro superior */
+  .navbar-toggler {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+
 
   /* Estilos para los elementos del menú */
   .navbar-nav li {
@@ -43,6 +54,17 @@
   .icons .nav-item {
     margin-left: -10px;
   }
+
+  /* Estilos para el ícono de hamburguesa */
+  .navbar button.navbar-toggler:hover{
+    background-color: lightgrey; /* Fondo transparente por defecto */
+  }
+
+  /* Cambiar color de fondo del ícono de hamburguesa en hover */
+  .navbar-toggler:hover .navbar-toggler-icon:hover {
+    background-color: none; /* Cambia este color por el gris que prefieras */
+  }
+
 
   /* Estilos de los botones */
   .nav-link {
