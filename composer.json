@@ -23,7 +23,7 @@
         "symfony/runtime": "7.0.*",
         "symfony/security-bundle": "7.0.*",
         "symfony/twig-bundle": "7.0.*",
-        "symfony/validator": "7.0.*",
+        "symfony/validator": "7.1.*",
         "symfony/yaml": "7.0.*",
         "symfonycasts/verify-email-bundle": "^1.16",
         "twig/twig": "^3.8"
